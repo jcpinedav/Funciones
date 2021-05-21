@@ -1,4 +1,4 @@
-var aleatorio = Math.floor(Math.random()*100)+11
+var aleatorio = Math.floor(Math.random()*5)+11
 var radio;
 const opcion = document.querySelectorAll("#opciones");
 const button = document.querySelector("#verificar");
@@ -14,16 +14,19 @@ button.addEventListener("click", function(evento){
     selected = imagen.src.substring(imagen.src.length-14, imagen.src.length-6)
     console.log(selected)
     if(selected === "Correcta"){
-        aleatorio = Math.floor(Math.random()*89)+11
+        aleatorio = Math.floor(Math.random()*5)+11
         var cadenaimg = "imagen"+aleatorio
         var cadenarst = "Correcta"+aleatorio
-        document.querySelector("#pregunta").src = "Imagenes/" + cadenaimg
+        document.querySelector("#pregunta").src = "Imagenes/" + cadenaimg+".jpg"
         const respuestas = document.querySelectorAll("#respuestas")
         var opcionesDeRespuesta = ["Incorrecta1"+aleatorio,"Incorrecta2"+aleatorio, "Incorrecta3"+aleatorio, cadenarst]
         opcionesDeRespuesta.sort(function() { return Math.random() - 0.5 });
         console.log(opcionesDeRespuesta)
         for(var i = 0;i<4;i++){
-            respuestas[i].src = "Imagenes/"+opcionesDeRespuesta[i]+".jpg"
+            respuestas[i].src = "Imagenes/"+opcionesDeRespuesta[i]+".gif"
         }
+    }else{
+        
     }
 })
+

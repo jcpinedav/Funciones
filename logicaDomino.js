@@ -17,13 +17,13 @@ button.addEventListener("click", function(evento){
         aleatorio = Math.floor(Math.random()*5)+11
         var cadenaimg = "imagen"+aleatorio
         var cadenarst = "Correcta"+aleatorio
-        document.querySelector("#pregunta").src = "Imagenes/" + cadenaimg+".jpg"
+        document.querySelector("#pregunta").src = "Imagenes/Dominio/" + cadenaimg+".jpg"
         const respuestas = document.querySelectorAll("#respuestas")
         var opcionesDeRespuesta = ["Incorrecta1"+aleatorio,"Incorrecta2"+aleatorio, "Incorrecta3"+aleatorio, cadenarst]
         opcionesDeRespuesta.sort(function() { return Math.random() - 0.5 });
         console.log(opcionesDeRespuesta)
         for(var i = 0;i<4;i++){
-            respuestas[i].src = "Imagenes/"+opcionesDeRespuesta[i]+".gif"
+            respuestas[i].src = "Imagenes/Dominio/"+opcionesDeRespuesta[i]+".gif"
         }
     }else{
         

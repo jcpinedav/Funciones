@@ -1,4 +1,4 @@
-var aleatorio = Math.floor(Math.random()*3)+12
+var aleatorio = Math.floor(Math.random()*8)+12
 var radio;
 const opcion = document.querySelectorAll("#opciones");
 const button = document.querySelector("#verificar");
@@ -23,20 +23,20 @@ button.addEventListener("click", function(evento){
     selected = imagen.src.substring(imagen.src.length-14, imagen.src.length-6)
         if(selected === "Correcta"){
             correctos += 1
-            if(correctos < 5){
+            if(correctos < 10){
             myModal2.show()
             const button2 =  document.querySelector("#cerrarmodal")
             button2.addEventListener("click", function(evento){
-                aleatorio = Math.floor(Math.random()*3)+12
+                aleatorio = Math.floor(Math.random()*8)+12
                 var cadenaimg = "imagen"+aleatorio
                 var cadenarst = "Correcta"+aleatorio
-                document.querySelector("#pregunta").src = "Imagenes/Dominio/" + cadenaimg+".jpg"
+                document.querySelector("#pregunta").src = "Imagenes/TiposDeFunciones/Ejercicios/" + cadenaimg+".jpg"
                 const respuestas = document.querySelectorAll("#respuestas")
                 var opcionesDeRespuesta = ["Incorrecta1"+aleatorio,"Incorrecta2"+aleatorio, "Incorrecta3"+aleatorio, cadenarst]
                 opcionesDeRespuesta.sort(function() { return Math.random() - 0.5 });
                 console.log(opcionesDeRespuesta)
                 for(var i = 0;i<4;i++){
-                    respuestas[i].src = "Imagenes/Dominio/"+opcionesDeRespuesta[i]+".gif"
+                    respuestas[i].src = "Imagenes/TiposDeFunciones/Ejercicios/"+opcionesDeRespuesta[i]+".gif"
                 }
             })
             }else{

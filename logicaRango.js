@@ -1,10 +1,19 @@
-var aleatorio = Math.floor(Math.random()*5)+11
+var aleatorio = Math.floor(Math.random()*3)+12
 var radio;
 const opcion = document.querySelectorAll("#opciones");
 const button = document.querySelector("#verificar");
 var selected;
-
+var correctos = 0;
 button.addEventListener("click", function(evento){
+    var myModal1 = new bootstrap.Modal(document.getElementById('incorrecto'), {
+        keyboard: false
+      })
+    var myModal2 = new bootstrap.Modal(document.getElementById('correcto'), {
+        keyboard: false
+      })
+    var myModal3 = new bootstrap.Modal(document.getElementById('finalizado'), {
+        keyboard: false
+      })
     opcion.forEach((aux)=>{
         if(aux.checked){
             selected = ".Opcion" + aux.value
@@ -12,21 +21,33 @@ button.addEventListener("click", function(evento){
     })
     const imagen = document.querySelector(selected)
     selected = imagen.src.substring(imagen.src.length-14, imagen.src.length-6)
-    console.log(selected)
-    if(selected === "Correcta"){
-        aleatorio = Math.floor(Math.random()*5)+11
-        var cadenaimg = "imagen"+aleatorio
-        var cadenarst = "Correcta"+aleatorio
-        document.querySelector("#pregunta").src = "Imagenes/Rango/" + cadenaimg+".jpg"
-        const respuestas = document.querySelectorAll("#respuestas")
-        var opcionesDeRespuesta = ["Incorrecta1"+aleatorio,"Incorrecta2"+aleatorio, "Incorrecta3"+aleatorio, cadenarst]
-        opcionesDeRespuesta.sort(function() { return Math.random() - 0.5 });
-        console.log(opcionesDeRespuesta)
-        for(var i = 0;i<4;i++){
-            respuestas[i].src = "Imagenes/Rango/"+opcionesDeRespuesta[i]+".gif"
+        if(selected === "Correcta"){
+            correctos += 1
+            if(correctos < 5){
+            myModal2.show()
+            const button2 =  document.querySelector("#cerrarmodal")
+            button2.addEventListener("click", function(evento){
+                aleatorio = Math.floor(Math.random()*3)+12
+                var cadenaimg = "imagen"+aleatorio
+                var cadenarst = "Correcta"+aleatorio
+                document.querySelector("#pregunta").src = "Imagenes/Rango/" + cadenaimg+".jpg"
+                const respuestas = document.querySelectorAll("#respuestas")
+                var opcionesDeRespuesta = ["Incorrecta1"+aleatorio,"Incorrecta2"+aleatorio, "Incorrecta3"+aleatorio, cadenarst]
+                opcionesDeRespuesta.sort(function() { return Math.random() - 0.5 });
+                console.log(opcionesDeRespuesta)
+                for(var i = 0;i<4;i++){
+                    respuestas[i].src = "Imagenes/Rango/"+opcionesDeRespuesta[i]+".gif"
+                }
+            })
+            }else{
+                myModal3.show()
+                const button3 = document.querySelector("#reiniciarConteo")
+                button3.addEventListener("click", function(evento){
+                    correctos = 0
+                })
+            }
+        }else{
+            myModal1.show()
         }
-    }else{
-        
-    }
 })
 
